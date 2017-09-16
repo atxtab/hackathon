@@ -5,10 +5,10 @@ function Home(props) {
   return (
     <main>
       <Link to='/vendor'>
-        <button>Vendor</button>
+        <button className="button-primary">Vendor</button>
       </Link>
       <Link to ='/user'>
-        <button>Customer</button>
+        <button className="button-primary">Customer</button>
       </Link>
     </main>
   )
