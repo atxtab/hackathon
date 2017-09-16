@@ -20,7 +20,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="App-header">  
-            <h2>Food Truck App</h2>
+            <h1 className="title">APP NAME</h1>
           </div>
           <Route exact path="/" component={Home}/>
           <Route exact path="/user" component={UserProfile}/>
@@ -32,6 +32,7 @@ class App extends Component {
           <Route exact path="/vendor" component={VendorProfile}/>
           <Route exact path="/vendor/stats" component={VendorStats}/>
           <Route exact path="/vendor/orders" component={VendorOrders}/>
+          <div className="logo"></div>
         </div>
       </Router>
     );

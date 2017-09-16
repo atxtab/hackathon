@@ -5,14 +5,14 @@ function Event(props) {
   return (
     <main>
       <Link to ='/user/vendor'>
-        <button>
+        <button className="button-primary">
           VENDOR 1
         </button>
       </Link>      
-      <button>
+      <button className="button-primary">
         VENDOR 2
       </button>
-      <button>
+      <button className="button-primary">
         VENDOR 3
       </button>
     </main>

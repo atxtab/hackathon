@@ -4,10 +4,16 @@ import { Link } from 'react-router-dom';
 function Cart(props) {
   return (
     <main>
-      <p>Order Summary</p>
+      <h3>Order Summary</h3>
+      <h5>Item:</h5>
+      <p></p>
+      <h5>Quantity:</h5>
+      <p></p>
+      <h3>Total:</h3>
+      <p></p>
       <p>Payment Info</p>
       <Link to='/user/order'>
-        <button>
+        <button className="button-primary">
           Submit Order
         </button>
       </Link>
