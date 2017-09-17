@@ -1,11 +1,15 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Home(props) {
   return (
     <main>
-      <button>Vendor</button>
-      <button>Customer</button>
+      <Link to='/vendor'>
+        <button className="button-primary">Vendor</button>
+      </Link>
+      <Link to ='/user'>
+        <button className="button-primary">Customer</button>
+      </Link>
     </main>
   )
 }
