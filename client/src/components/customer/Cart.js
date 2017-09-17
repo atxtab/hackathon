@@ -12,10 +12,13 @@ class Cart extends Component {
       order: {
         vendor_id: this.props.vendor.id,
         user_id: this.props.user.id,
-        items: [
-          {item_id: 1,
-          item_quantity: 1,}
-        ]
+        items: Object.keys(this.props.quantities).map(item_id => {
+          return {
+            item_id,
+            item_quantity: this.props.quantities[item_id].quantity,
+          }
+        })
+
       }
     }
     this.doOrderPost = this.doOrderPost.bind(this);
@@ -23,16 +26,16 @@ class Cart extends Component {
 
   doOrderPost() {
     const {vendor_id, user_id, items} = this.state.order;
-     return fetcher(
-            'POST', 
-            '/atxtab/api/v1.0/orders', 
-            {
-                vendor_id,
-                user_id,
-                items
-            }
-        )
-        .then(res => this.props.onComplete(res.orders.order_id))
+    return fetcher(
+      'POST',
+      '/atxtab/api/v1.0/orders',
+      {
+        vendor_id,
+        user_id,
+        items
+      }
+    )
+      .then(res => this.props.onComplete(res.orders.order_id))
   }
 
   render() {
@@ -42,11 +45,11 @@ class Cart extends Component {
         <h3>Order Summary from {this.props.vendor.vendor_name}</h3>
         {Object.keys(this.props.quantities)
           //filter out any zero quantity items
-          .filter(key => !!Number(this.props.quantities[key]))
-          .map((itemName) => (
-            <div key={itemName}>
+          .filter(key => !!Number(this.props.quantities[key].quantity))
+          .map((itemId) => (
+            <div key={itemId}>
               <h5>Item / Quantity:</h5>
-              <p>{itemName} / {this.props.quantities[itemName]}</p>
+              <p>{this.props.quantities[itemId].name} / {this.props.quantities[itemId].quantity}</p>
             </div>
           ))}
         <div className="menu-item">
