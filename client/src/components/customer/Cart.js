@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Cart(props) {
+  console.log('quantities', props.quantities)
   return (
     <main>
       <h3>Order Summary</h3>
