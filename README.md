@@ -88,7 +88,7 @@ http://localhost:5000/atxtab/api/v1.0/orders/<order_id>/stats
 * **Sarah Dykema Hampton** - *API* - [dykemasarah](https://github.com/dykemasarah)
 * **Lauren Schroeder** - *JavaScript/React - Vendor Screen* - [laurenschroeder](https://github.com/laurenschroeder)
 * **Brigitte Huneke** - *JavaScript/React - User Screen* - [bhuneke](https://github.com/bhuneke)
-* **Brigitte Huneke** - *JavaScript/React - User Screen*
+
 
 
 
