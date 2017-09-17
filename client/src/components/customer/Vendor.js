@@ -8,7 +8,7 @@ class Vendor extends Component {
     return (
       <main>
         <h2 className="vendor-name">{this.props.vendor.vendor_name}</h2>
-        <form>
+        <form >
 
           {this.props.vendor.items.map((item, i) => {
             console.log(item.item_name)
@@ -23,7 +23,7 @@ class Vendor extends Component {
 
           <Link to='/user/cart'>
             <button className="button-primary">
-              View Cart
+              Check Out
             </button>
           </Link>
         </form>

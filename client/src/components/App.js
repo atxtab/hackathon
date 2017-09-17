@@ -23,7 +23,7 @@ class App extends Component {
       vendor: {},
       quantities: {},
       user: {
-        _id: 1,
+        id: 1,
         address_1: '555 Austin Blvd',
         address_2: '',
         city: 'Austin',
@@ -32,7 +32,8 @@ class App extends Component {
         phone: '740-641-5582',
         first_name: 'Hungry',
         last_name: 'Hipster',
-      }
+      },
+      order_id: null,
     }
     this.onChange = this.onChange.bind(this);
   }
@@ -54,6 +55,12 @@ class App extends Component {
       quantities,
     });
   }
+
+  onComplete = (order_id) => {
+    this.setState({
+      order_id,
+    })
+  } 
   
   render() {
     const items = this.state.vendor.items;
@@ -70,28 +77,35 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="App-header">  
-            <h1 className="title">ATXTAB</h1>
+            <h1 className="title">HUNGRY HUNGRY</h1>
+            <h1 className="title">HIPSTER</h1>
           </div>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/user" component={UserProfile}/>
-          <Route exact path="/user/event" component={Event}/>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/user" component={UserProfile} />
+          <Route exact path="/user/event" component={Event} />
           <Route exact path="/user/vendor" render={props => (
-                        <Vendor {...props} 
-                            vendor={this.state.vendor}
-                            quantities={this.state.quantities}
-                            onChange={this.onChange}
-                        />)} />
-          <Route exact path="/user/order" component={Order}/>
-          <Route exact path="/user/complete" component={Complete}/>
+            <Vendor {...props}
+              vendor={this.state.vendor}
+              quantities={this.state.quantities}
+              onChange={this.onChange}
+              />)} />
+          <Route exact path="/user/order" render= {props => (
+            <Order {...props}
+              order_id={this.state.order_id}
+            />
+          )} />
+          <Route exact path="/user/complete" component={Complete} />
           <Route exact path="/user/cart" render={props => (
-                        <Cart {...props} 
-                            vendor={this.state.vendor}
-                            quantities={this.state.quantities}
-                        />)}/>
-          <Route exact path="/vendor" component={VendorProfile}/>
-          <Route exact path="/vendor/stats" component={VendorStats}/>
-          <Route exact path="/vendor/orders" component={VendorOrders}/>
-          <img className="logo" src="/truck2.png"/>
+            <Cart {...props}
+              vendor={this.state.vendor}
+              quantities={this.state.quantities}
+              user={this.state.user}
+              onComplete={this.onComplete}
+              />)} />
+          <Route exact path="/vendor" component={VendorProfile} />
+          <Route exact path="/vendor/stats" component={VendorStats} />
+          <Route exact path="/vendor/orders" component={VendorOrders} />
+          <img className="logo" src="/truck2.png" alt="food truck"/>
         </div>
       </Router>
     );
