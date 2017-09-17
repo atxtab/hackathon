@@ -21,7 +21,8 @@ class Cart extends Component {
     this.doOrderPost = this.doOrderPost.bind(this);
   };
 
-  doOrderPost(vendor_id, user_id, items) {
+  doOrderPost() {
+    const {vendor_id, user_id, items} = this.state.order;
      return fetcher(
             'POST', 
             '/atxtab/api/v1.0/orders', 
@@ -31,7 +32,7 @@ class Cart extends Component {
                 items
             }
         )
-        .then(res => console.log(res))
+        .then(res => this.props.onComplete(res.orders.order_id))
   }
 
   render() {
@@ -56,11 +57,8 @@ class Cart extends Component {
           <p>08/19</p>
         </div>
         <Link to='/user/order'>
-          <button className="button-primary" 
-          onSubmit={this.doOrderPost(
-            this.state.order.vendor_id, 
-            this.state.order.user_id, 
-            this.state.order.items)}>
+          <button type="button" className="button-primary" 
+          onClick={this.doOrderPost}>
             Submit Order
           </button>
         </Link>

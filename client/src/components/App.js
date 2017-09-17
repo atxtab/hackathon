@@ -32,7 +32,8 @@ class App extends Component {
         phone: '740-641-5582',
         first_name: 'Hungry',
         last_name: 'Hipster',
-      }
+      },
+      order_id: null,
     }
     this.onChange = this.onChange.bind(this);
   }
@@ -54,6 +55,12 @@ class App extends Component {
       quantities,
     });
   }
+
+  onComplete = (order_id) => {
+    this.setState({
+      order_id,
+    })
+  } 
   
   render() {
     const items = this.state.vendor.items;
@@ -70,7 +77,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="App-header">  
-            <h1 className="title">ATXTAB</h1>
+            <h1 className="title">HUNGRY HIPSTER</h1>
           </div>
           <Route exact path="/" component={Home} />
           <Route exact path="/user" component={UserProfile} />
@@ -81,13 +88,18 @@ class App extends Component {
               quantities={this.state.quantities}
               onChange={this.onChange}
               />)} />
-          <Route exact path="/user/order" component={Order} />
+          <Route exact path="/user/order" render= {props => (
+            <Order {...props}
+              order_id={this.state.order_id}
+            />
+          )} />
           <Route exact path="/user/complete" component={Complete} />
           <Route exact path="/user/cart" render={props => (
             <Cart {...props}
               vendor={this.state.vendor}
               quantities={this.state.quantities}
               user={this.state.user}
+              onComplete={this.onComplete}
               />)} />
           <Route exact path="/vendor" component={VendorProfile} />
           <Route exact path="/vendor/stats" component={VendorStats} />
