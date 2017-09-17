@@ -4,10 +4,10 @@ import { Route, Link } from 'react-router-dom';
 function UserProfile(props) {
   return (
     <main>
-      <h3>User Name</h3>
-      <p>phone number</p>
+      <h3>Leo DaVinci</h3>
+      <p>512-555-5555</p>
       <Link to='/user/event'>
-        <button>
+        <button className="button-primary">
           Order Food
         </button>
       </Link>
