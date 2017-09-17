@@ -26,43 +26,57 @@ pip install flask
 
 Get All Vendors:
 ```
-GET REQUEST
+METHOD: GET
 http://localhost:5000/atxtab/api/v1.0/vendors
 ```
 
 Get Specific Vendors:
 ```
-GET REQUEST
+METHOD: GET
 http://localhost:5000/atxtab/api/v1.0/vendors/<vendor_id>
+```
+
+Create A New Vendor:
+```
+METHOD: POST
+ARGUMENTS: vendor_name, vendor_description, vendor_logo
+http://localhost:5000/atxtab/api/v1.0/vendors
+```
+
+Create A New Vendor Item:
+```
+METHOD: POST
+ARGUMENTS: item_name, item_price, item_wait_period, item_url
+http://localhost:5000/atxtab/api/v1.0/vendors
 ```
 
 Get All Users:
 ```
-GET REQUEST
+METHOD: GET
 http://localhost:5000/atxtab/api/v1.0/users
 ```
 
 Get Specific User:
 ```
-GET REQUEST
+METHOD: GET
 http://localhost:5000/atxtab/api/v1.0/users/<user_id>
 ```
 
 Get All Orders:
 ```
-GET REQUEST
+METHOD: GET
 http://localhost:5000/atxtab/api/v1.0/orders
 ```
 
 Get Specific Order:
 ```
-GET REQUEST
+METHOD: GET
 http://localhost:5000/atxtab/api/v1.0/orders/<order_id>
 ```
 
 Get Specific Order Stats:
 ```
-GET REQUEST
+METHOD: GET
 http://localhost:5000/atxtab/api/v1.0/orders/<order_id>/stats
 ```
 
