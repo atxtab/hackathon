@@ -21,7 +21,9 @@ class App extends Component {
     super(props);
     this.state = {
       vendor: {},
-      quantities: {},
+      quantities: {
+        //{1: {name: '', quantity: #}}
+      },
       user: {
         id: 1,
         address_1: '555 Austin Blvd',
@@ -43,13 +45,15 @@ class App extends Component {
     .then(res => console.log(res) || res)
       .then(vendor => {
         this.setState( vendor )
-        console.log(this.state)
         });
   }
 
   onChange(e) {
     const quantities = this.state.quantities;
-    quantities[e.target.getAttribute('name')] = e.target.value;
+    quantities[e.target.dataset.id] = {
+      name: e.target.dataset.name,
+      quantity: e.target.value
+    };
 
     this.setState({
       quantities,
@@ -65,7 +69,6 @@ class App extends Component {
   render() {
     const items = this.state.vendor.items;
     const vendor = this.state.vendor.vendor_name;
-    console.log(items, vendor)
 
     if(!items || !vendor) {
       return (
