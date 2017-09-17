@@ -2,10 +2,6 @@
 
 Standing in line is so 2016.
 
-## Structure
-
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ## Install
 
@@ -13,6 +9,12 @@ These instructions will get you a copy of the project up and running on your loc
 git clone https://github.com/atxtab/hackathon.git
 ```
 
+## Built With
+
+* JavaScript
+* React
+* Flask
+* Twilio
 
 ### Prerequisites for Flask API
 
@@ -81,19 +83,13 @@ http://localhost:5000/atxtab/api/v1.0/orders/<order_id>/stats
 ```
 
 
-## Built With
+## GitHub Authors
 
-* JavaScript
-* React
-* Flask
-* Twilio
+* **Sarah Dykema Hampton** - *API* - [dykemasarah](https://github.com/dykemasarah)
+* **Lauren Schroeder** - *JavaScript/React - Vendor Screen* - [laurenschroeder](https://github.com/laurenschroeder)
+* **Brigitte Huneke** - *JavaScript/React - User Screen* - [bhuneke](https://github.com/bhuneke)
+* **Brigitte Huneke** - *JavaScript/React - User Screen*
 
-## Authors
-
-* **Sarah Dykema Hampton** - *Initial work* - [dykemasarah](https://github.com/dykemasarah)
-* **Sarah Dykema Hampton** - *Initial work* - [dykemasarah](https://github.com/dykemasarah)
-* **Sarah Dykema Hampton** - *Initial work* - [dykemasarah](https://github.com/dykemasarah)
-* **Sarah Dykema Hampton** - *Initial work* - [dykemasarah](https://github.com/dykemasarah)
 
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
