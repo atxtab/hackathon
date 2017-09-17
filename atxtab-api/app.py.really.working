@@ -238,26 +238,22 @@ def get_order(order_id):
 
 @app.route('/atxtab/api/v1.0/orders/<int:order_id>/stats', methods=['GET'])
 def get_order_stats(order_id):
-    
-    results = str("[")
     order = [order for order in orders if order['order_id'] == order_id]
     if len(order) == 0:
         abort(404)
-    #results = results + str({'order': order[0]})
     vendor = [vendor for vendor in vendors if order[0]['vendor_id']]
-    
+    results = str("[")
     price_total = float(0)
     wait_time_total = float(0)
     for item in vendor[0]['items']:
        item_id = item['item_id'][0]
        item_price = item['item_price'][0]
        item_wait_time = item['item_wait_time'][0]
-#       price_total = float(item_price)
-#       price_total = format(price_total,'.2f')
-#       wait_time_total = float(wait_time_total) + float(item_wait_time)
-       results = results + "{'item_price': " + str(item_price) + ", 'item_id': " + str(item_id) + ", 'item_wait_time': " + str(item_wait_time) + "}" 
+       price_total = float(price_total) + float(item_price)
+       price_total = format(price_total,'.2f')
+       wait_time_total = float(wait_time_total) + float(item_wait_time)
+    results = {'wait_time_total': str(wait_time_total), 'price_total':  str(price_total)}
     return jsonify(results)
-
 
 #########################
 # Orders - POST REQUESTS
