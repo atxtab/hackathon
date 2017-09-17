@@ -19,6 +19,7 @@ git clone https://github.com/atxtab/hackathon.git
 * React
 * Flask
 * Twilio
+* Python
 
 ### Prerequisites for Flask API
 
