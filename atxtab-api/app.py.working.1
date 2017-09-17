@@ -2,35 +2,24 @@
 
 from flask import abort, request, Flask, jsonify, make_response
 from flask_cors import CORS, cross_origin
-from twilio import twiml
-from twilio.rest import Client
-
-# Pull in configuration from system environment variables
-account_sid = "AC50d5f032a3a46203dcc426c2c4f8fed5"
-auth_token = "995372d2ba23503ec919411cf8f0ed38"
-client = Client(account_sid, auth_token)
-
-# create an authenticated client that can make requests to Twilio for your
-# account.
-#client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 app = Flask(__name__)
 CORS(app)
 
 orders = [
    {
-        'order_id': 1,
-        'vendor_id': u'1',
+        'id': 1,
         'user_id': u'1',
-        'order_status': u'order_complete',
-        'items': [
+        'order': [
              {
                 'item_id': u'1',
-                'item_quantity': u'4',
+                'vendor_id': u'1',
+                'item_quanitity': u'4',
              },
              {
                 'item_id': u'2',
-                'item_quantity': u'2',
+                'vendor_id': u'1',
+                'item_quanitity': u'2',
              }
         ]
    }
@@ -187,23 +176,18 @@ def get_vendor(vendor_id):
         abort(404)
     return jsonify({'vendor': vendor[0]})
 
-#@app.route('/atxtab/api/v1.0/vendors/<int:vendor_id>/items/<int:item_num>', methods=['GET'])
+@app.route('/atxtab/api/v1.0/vendors/<int:vendor_id>/items/<int:item_id>', methods=['GET'])
 #def get_vendor(vendor_id):
 #    vendor = [vendor for vendor in vendors if vendor['id'] == vendor_id]
 #    if len(vendor) == 0:
 #        abort(404)
-#    results = str("[")
-#    for item in vendor[0]['items']:
-#       item_id = item['item_id'][0]
-#       item_price = item['item_price'][0]
-#       item_wait_time = item['item_wait_time'][0]
-#
-#       if(results == str("[")):
-#         results = results + "{'item_id': " + item_id + ", 'item_price': " + item_price + ", 'item_wait_time': " + item_wait_time + "}"
-#       else:
-#         results = results + "{'item_id': " + item_id + ", 'item_price': " + item_price + ", 'item_wait_time': " + item_wait_time + "}"
-#    results = results + "]"
-#    return jsonify(results)
+#    return jsonify({'vendor': vendor[0]})
+def get_item(item_id):
+    item = [item for item in items if item['id'] == item_id]
+    if len(item) == 0:
+        abort(404)
+    return jsonify({'item': item[0]})
+
 
 #########################
 # Vendors - POST REQUESTS
@@ -236,28 +220,6 @@ def get_order(order_id):
         abort(404)
     return jsonify({'order': order[0]})
 
-@app.route('/atxtab/api/v1.0/orders/<int:order_id>/stats', methods=['GET'])
-def get_order_stats(order_id):
-    
-    results = str("[")
-    order = [order for order in orders if order['order_id'] == order_id]
-    if len(order) == 0:
-        abort(404)
-    #results = results + str({'order': order[0]})
-    vendor = [vendor for vendor in vendors if order[0]['vendor_id']]
-    
-    price_total = float(0)
-    wait_time_total = float(0)
-    for item in vendor[0]['items']:
-       item_id = item['item_id'][0]
-       item_price = item['item_price'][0]
-       item_wait_time = item['item_wait_time'][0]
-#       price_total = float(item_price)
-#       price_total = format(price_total,'.2f')
-#       wait_time_total = float(wait_time_total) + float(item_wait_time)
-       results = results + "{'item_price': " + str(item_price) + ", 'item_id': " + str(item_id) + ", 'item_wait_time': " + str(item_wait_time) + "}" 
-    return jsonify(results)
-
 
 #########################
 # Orders - POST REQUESTS
@@ -266,38 +228,18 @@ def get_order_stats(order_id):
 def create_orders():
     if not request.json or not 'user_id' in request.json:
         abort(400)
-    order = {
-        'order_id': orders[-1]['order_id'] + 1,
+    orders = {
+        'id': orders[-1]['id'] + 1,
         'user_id': request.json['user_id'],
-        'vendor_id': request.json['vendor_id'],
-        'items':  request.json['items'],
-        'order_status': 'order_complete'
+        'order': {
+          'vendor_id': request.json['vendor_id'],
+          'item_id': request.json['item_id'],
+          'item_quantity': request.json['item_quantity']
+        }
     }
     orders.append(order)
-    return jsonify({'orders': order}), 201
+    return jsonify({'orders': orders}), 201
 
-
-@app.route('/atxapi/api/v1.0/orders/<int:order_id>/status', methods=['POST'])
-def update_status(order_id):
-    order = [order for order in orders if order['order_id'] == order_id]
-    if len(order) == 0:
-        abort(404)
-    order[0]['order_status'] = request.json.get('order_status', order[0]['order_status'])
-    return jsonify({'order': order[0]})
-
-#########################
-# Orders - POST REQUESTS
-#########################
-@app.route('/atxtab/api/v1.0/sms', methods=['POST'])
-def message():
-#user_id': request.json['user_id']    +17406415582
-    # Send a text message to the number provided
-    message = client.api.account.messages.create(to="+17406415582",
-                                         from_="+12164506685",
-                                         body=request.json['body'])
-
-    # Return a message indicating the text message is enroute
-    return 'Message on the way!'
 
 #########################
 # Error Handling
