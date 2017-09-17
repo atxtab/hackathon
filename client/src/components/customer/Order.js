@@ -6,6 +6,7 @@ class Order extends Component {
     super(props);
     this.state ={
       order_id: this.props.order_id,   
+      quantities: this.props.quantities,
       order: {}
     }
   }
@@ -26,6 +27,7 @@ class Order extends Component {
   }
 
   render() {
+    console.log(this.state.quantities)
     return (
       <main>
         <h4>Order Number:</h4>

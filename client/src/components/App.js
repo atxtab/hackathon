@@ -95,6 +95,7 @@ class App extends Component {
           <Route exact path="/user/order" render= {props => (
             <Order {...props}
               order_id={this.state.order_id}
+              quantities={this.state.quantities}
             />
           )} />
           <Route exact path="/user/complete" component={Complete} />
