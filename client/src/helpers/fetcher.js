@@ -5,7 +5,7 @@ export default function fetcher(method, path, body) {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET',
+      'Access-Control-Allow-Methods': 'GET POST',
     },
     body: JSON.stringify(body),
   })

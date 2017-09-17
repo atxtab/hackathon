@@ -23,7 +23,7 @@ class App extends Component {
       vendor: {},
       quantities: {},
       user: {
-        _id: 1,
+        id: 1,
         address_1: '555 Austin Blvd',
         address_2: '',
         city: 'Austin',
@@ -72,26 +72,27 @@ class App extends Component {
           <div className="App-header">  
             <h1 className="title">ATXTAB</h1>
           </div>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/user" component={UserProfile}/>
-          <Route exact path="/user/event" component={Event}/>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/user" component={UserProfile} />
+          <Route exact path="/user/event" component={Event} />
           <Route exact path="/user/vendor" render={props => (
-                        <Vendor {...props} 
-                            vendor={this.state.vendor}
-                            quantities={this.state.quantities}
-                            onChange={this.onChange}
-                        />)} />
-          <Route exact path="/user/order" component={Order}/>
-          <Route exact path="/user/complete" component={Complete}/>
+            <Vendor {...props}
+              vendor={this.state.vendor}
+              quantities={this.state.quantities}
+              onChange={this.onChange}
+              />)} />
+          <Route exact path="/user/order" component={Order} />
+          <Route exact path="/user/complete" component={Complete} />
           <Route exact path="/user/cart" render={props => (
-                        <Cart {...props} 
-                            vendor={this.state.vendor}
-                            quantities={this.state.quantities}
-                        />)}/>
-          <Route exact path="/vendor" component={VendorProfile}/>
-          <Route exact path="/vendor/stats" component={VendorStats}/>
-          <Route exact path="/vendor/orders" component={VendorOrders}/>
-          <img className="logo" src="/truck2.png"/>
+            <Cart {...props}
+              vendor={this.state.vendor}
+              quantities={this.state.quantities}
+              user={this.state.user}
+              />)} />
+          <Route exact path="/vendor" component={VendorProfile} />
+          <Route exact path="/vendor/stats" component={VendorStats} />
+          <Route exact path="/vendor/orders" component={VendorOrders} />
+          <img className="logo" src="/truck2.png" alt="food truck"/>
         </div>
       </Router>
     );
