@@ -77,7 +77,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="App-header">  
-            <h1 className="title">HUNGRY HIPSTER</h1>
+            <h1 className="title">HUNGRY HUNGRY</h1>
+            <h1 className="title">HIPSTER</h1>
           </div>
           <Route exact path="/" component={Home} />
           <Route exact path="/user" component={UserProfile} />
