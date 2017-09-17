@@ -6,14 +6,14 @@ function Event(props) {
     <main>
       <Link to ='/user/vendor'>
         <button className="button-primary">
-          VENDOR 1
+          Slab BBQ
         </button>
       </Link>      
       <button className="button-primary">
-        VENDOR 2
+        East Side King
       </button>
       <button className="button-primary">
-        VENDOR 3
+        Burro Cheese Kitchen
       </button>
     </main>
   )

@@ -22,6 +22,17 @@ class App extends Component {
     this.state = {
       vendor: {},
       quantities: {},
+      user: {
+        _id: 1,
+        address_1: '555 Austin Blvd',
+        address_2: '',
+        city: 'Austin',
+        state: 'TX',
+        zip: 78751,
+        phone: '740-641-5582',
+        first_name: 'Hungry',
+        last_name: 'Hipster',
+      }
     }
     this.onChange = this.onChange.bind(this);
   }
@@ -59,7 +70,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="App-header">  
-            <h1 className="title">APP NAME</h1>
+            <h1 className="title">ATXTAB</h1>
           </div>
           <Route exact path="/" component={Home}/>
           <Route exact path="/user" component={UserProfile}/>
@@ -80,7 +91,7 @@ class App extends Component {
           <Route exact path="/vendor" component={VendorProfile}/>
           <Route exact path="/vendor/stats" component={VendorStats}/>
           <Route exact path="/vendor/orders" component={VendorOrders}/>
-          <div className="logo"></div>
+          <img className="logo" src="/truck2.png"/>
         </div>
       </Router>
     );
@@ -89,4 +100,4 @@ class App extends Component {
 
 export default App;
 
-//<img src={logo} className="App-logo" alt="logo" />ß
+//<img src={logo} className="App-logo" alt="logo" />

@@ -7,16 +7,15 @@ class Vendor extends Component {
     
     return (
       <main>
-        <h2>{this.props.vendor.vendor_name}</h2>
+        <h2 className="vendor-name">{this.props.vendor.vendor_name}</h2>
         <form>
 
           {this.props.vendor.items.map((item, i) => {
             console.log(item.item_name)
             return (
-              <div key={item.item_name}>
-                <h3>{item.item_name}</h3>
+              <div className="menu-item" key={item.item_name}>
+                <h3>{item.item_name} - ${item.item_price}</h3>
                 <p>{item.item_description}</p>
-                <h5>${item.item_price}</h5>
                 <input type='text' value={this.props.quantities[item.item_name]} name={item.item_name} onChange={this.props.onChange} placeholder='#'></input>
               </div>
             )
